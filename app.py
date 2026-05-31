@@ -17,7 +17,7 @@ st.set_page_config(page_title="Churn Prediction Dashboard", layout="wide", page_
 # ── Load Data ──
 @st.cache_data
 def load_data():
-    df = pd.read_csv('data/telco_churn.csv')
+    df = pd.read_csv('telco_churn.csv')
     df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
     df.dropna(inplace=True)
     if 'customerID' in df.columns:
@@ -27,10 +27,10 @@ def load_data():
 # ── Load Models ──
 @st.cache_resource
 def load_models():
-    rf = joblib.load('models/random_forest.pkl')
-    gb = joblib.load('models/gradient_boosting.pkl')
-    scaler = joblib.load('models/scaler.pkl')
-    features = joblib.load('models/feature_names.pkl')
+  rf = joblib.load('random_forest.pkl')
+gb = joblib.load('gradient_boosting.pkl')
+scaler = joblib.load('scaler.pkl')
+features = joblib.load('feature_names.pkl')
     return rf, gb, scaler, features
 
 df = load_data()
